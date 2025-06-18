@@ -19,7 +19,7 @@ lazy_static! {
 pub async fn discover() -> Result<Vec<Speaker>, Error> {
     let search_target = URN::device("schemas-upnp-org", "ZonePlayer", 1).into();
     let timeout = Duration::from_secs(2);
-    let responses = ssdp_client::search(&search_target, timeout, 1).await?;
+    let responses = ssdp_client::search(&search_target, timeout, 1, None).await?;
     futures::pin_mut!(responses);
 
     let mut speakers = Vec::new();
